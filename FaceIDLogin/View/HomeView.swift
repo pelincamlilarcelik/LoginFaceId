@@ -11,8 +11,8 @@ import Firebase
 struct HomeView: View {
     @AppStorage ("log_status") var logStatus: Bool = false
     @AppStorage ("use_face_id") var useFaceId: Bool = false
-    @AppStorage ("use_face_email") var faceIdEmail = ""
-    @AppStorage ("use_face_password") var faceIdPassword = ""
+    @Keychain (key:"use_face_email",account: "FaceIdLogin") var storedEmail
+    @Keychain (key:"use_face_password",account: "FaceIdLogin") var storedPassword
     var body: some View {
         VStack(spacing: 20) {
             if logStatus{
@@ -34,8 +34,8 @@ struct HomeView: View {
             if useFaceId{
                 Button("Disable FaceID"){
                     useFaceId = false
-                    faceIdEmail = ""
-                    faceIdPassword = ""
+                    storedEmail = nil
+                    storedPassword = nil
                 }
             }
         }

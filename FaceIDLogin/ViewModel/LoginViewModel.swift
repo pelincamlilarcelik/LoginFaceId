@@ -16,19 +16,23 @@ class LoginViewModel: ObservableObject{
     @Published var errorMessage = ""
     
     @AppStorage ("use_face_id") var useFaceId: Bool = false
-    @AppStorage ("use_face_email") var faceIdEmail = ""
-    @AppStorage ("use_face_password") var faceIdPassword = ""
+    // Keychain Properties
+    
+    @Keychain (key:"use_face_email",account: "FaceIdLogin") var storedEmail
+    @Keychain (key:"use_face_password",account: "FaceIdLogin") var storedPassword
     @AppStorage ("log_status") var logStatus: Bool = false
     
     func loginUser(useFaceId:Bool,email:String = "",password:String = "")async throws{
         let _ = try await Auth.auth().signIn(withEmail: email != "" ? email : self.email, password: password != "" ? password : self.password)
         DispatchQueue.main.async {
             // Storing once
-            if useFaceId && self.faceIdEmail == ""{
+            if useFaceId && self.storedEmail == nil{
                 // Storing for future faceId login
                 self.useFaceId = useFaceId
-                self.faceIdEmail = self.email
-                self.faceIdPassword = self.password
+                let emailData = self.email.data(using: .utf8)
+                let passwordData = self.password.data(using: .utf8)
+                self.storedEmail = emailData
+                self.storedPassword = passwordData
             }
             self.logStatus = true
         }
@@ -39,8 +43,11 @@ class LoginViewModel: ObservableObject{
     }
     func authenticateUser()async throws{
         let status = try await LAContext().evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "To Login")
-        if status{
-            try await loginUser(useFaceId: useFaceId,email: faceIdEmail,password: faceIdPassword)
+        if let emailData = storedEmail,let passwordData = storedPassword,status{
+            try await loginUser(
+                useFaceId: useFaceId,
+                email: String(data: emailData, encoding: .utf8) ?? "",
+                password: String(data: passwordData, encoding: .utf8) ?? "")
         }
     }
 }

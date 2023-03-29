@@ -16,6 +16,8 @@
 		7740D4AA29D335BD0057D233 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7740D4A929D335BD0057D233 /* LoginPage.swift */; };
 		7740D4AC29D336F20057D233 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7740D4AB29D336F20057D233 /* LoginViewModel.swift */; };
 		7740D4AE29D340C10057D233 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7740D4AD29D340C10057D233 /* HomeView.swift */; };
+		77EFA98329D4509E00293E9D /* keychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EFA98229D4509E00293E9D /* keychainHelper.swift */; };
+		77EFA98529D455F500293E9D /* KeychainPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EFA98429D455F500293E9D /* KeychainPropertyWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		7740D4A929D335BD0057D233 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		7740D4AB29D336F20057D233 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7740D4AD29D340C10057D233 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		77EFA98229D4509E00293E9D /* keychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keychainHelper.swift; sourceTree = "<group>"; };
+		77EFA98429D455F500293E9D /* KeychainPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPropertyWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 		7740D49329D32DE60057D233 /* FaceIDLogin */ = {
 			isa = PBXGroup;
 			children = (
+				77EFA98129D4507800293E9D /* Helper */,
 				7740D4A829D335130057D233 /* ViewModel */,
 				7740D4A729D3350D0057D233 /* View */,
 				7740D49429D32DE60057D233 /* FaceIDLoginApp.swift */,
@@ -95,6 +100,15 @@
 				7740D4AB29D336F20057D233 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		77EFA98129D4507800293E9D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				77EFA98229D4509E00293E9D /* keychainHelper.swift */,
+				77EFA98429D455F500293E9D /* KeychainPropertyWrapper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,9 +189,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7740D4AC29D336F20057D233 /* LoginViewModel.swift in Sources */,
+				77EFA98329D4509E00293E9D /* keychainHelper.swift in Sources */,
 				7740D49729D32DE60057D233 /* ContentView.swift in Sources */,
 				7740D4AA29D335BD0057D233 /* LoginPage.swift in Sources */,
 				7740D4AE29D340C10057D233 /* HomeView.swift in Sources */,
+				77EFA98529D455F500293E9D /* KeychainPropertyWrapper.swift in Sources */,
 				7740D49529D32DE60057D233 /* FaceIDLoginApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
